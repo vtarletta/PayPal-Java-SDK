@@ -1,15 +1,11 @@
 package com.paypal.api.payments;
 
-import com.paypal.base.rest.JSONFormatter;
-import com.paypal.api.payments.Currency;
-import com.paypal.api.payments.ExternalFunding;
-import java.util.List;
-import com.paypal.api.payments.Refund;
-import com.paypal.base.rest.PayPalModel;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
-import lombok.Getter; import lombok.Setter;
+
+import java.util.List;
 
 @Getter @Setter
 @EqualsAndHashCode(callSuper = true)
@@ -20,11 +16,6 @@ public class DetailedRefund extends Refund {
 	 * free-form field for the use of clients
 	 */
 	private String custom;
-
-	/**
-	 * invoice number to track this payment
-	 */
-	private String invoiceNumber;
 
 	/**
 	 * Amount refunded to payer of the original transaction, in the current Refund call

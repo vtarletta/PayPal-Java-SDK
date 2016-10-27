@@ -5,35 +5,21 @@
 // API used: /v1/payments/capture/{capture_id}/refund
 package com.paypal.api.payments.servlet;
 
-import static com.paypal.api.payments.util.SampleConstants.clientID;
-import static com.paypal.api.payments.util.SampleConstants.clientSecret;
-import static com.paypal.api.payments.util.SampleConstants.mode;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import com.paypal.api.payments.*;
+import com.paypal.api.payments.util.ResultPrinter;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.log4j.Logger;
-
-import com.paypal.api.payments.Address;
-import com.paypal.api.payments.Amount;
-import com.paypal.api.payments.Authorization;
-import com.paypal.api.payments.Capture;
-import com.paypal.api.payments.CreditCard;
-import com.paypal.api.payments.Details;
-import com.paypal.api.payments.FundingInstrument;
-import com.paypal.api.payments.Payer;
-import com.paypal.api.payments.Payment;
-import com.paypal.api.payments.Refund;
-import com.paypal.api.payments.Transaction;
-import com.paypal.api.payments.util.ResultPrinter;
-import com.paypal.base.rest.APIContext;
-import com.paypal.base.rest.PayPalRESTException;
+import static com.paypal.api.payments.util.SampleConstants.*;
 
 public class RefundCaptureServlet extends HttpServlet {
 
@@ -76,20 +62,20 @@ public class RefundCaptureServlet extends HttpServlet {
 			
 			/// ###Refund
 			/// Create a Refund object
-			Refund refund = new Refund();
-			
+			RefundRequest refund = new RefundRequest();
+
 			// ###Amount
 			// Let's you specify a capture amount.
 			Amount amount = new Amount();
 			amount.setCurrency("USD").setTotal("1");
-			
+
 			refund.setAmount(amount);
-			
+
 			// Do a Refund by
-			// POSTing to 
+			// POSTing to
 			// URI v1/payments/capture/{capture_id}/refund
 			Refund responseRefund = capture.refund(apiContext, refund);
-			
+
 			LOGGER.info("Refund id = " + responseRefund.getId()
 					+ " and status = " + responseRefund.getState());
 			ResultPrinter.addResult(req, resp, "Refund a Capture", Refund.getLastRequest(), Refund.getLastResponse(), null);
@@ -177,7 +163,7 @@ public class RefundCaptureServlet extends HttpServlet {
 		creditCard.setExpireYear(2018);
 		creditCard.setFirstName("Joe");
 		creditCard.setLastName("Shopper");
-		creditCard.setNumber("4417119669820331");
+		creditCard.setNumber("4669424246660779");
 		creditCard.setType("visa");
 
 		// ###FundingInstrument

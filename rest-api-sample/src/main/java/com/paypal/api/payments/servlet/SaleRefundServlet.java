@@ -5,23 +5,20 @@
 // API used: /v1/payments/sale/{sale-id}/refund
 package com.paypal.api.payments.servlet;
 
-import static com.paypal.api.payments.util.SampleConstants.clientID;
-import static com.paypal.api.payments.util.SampleConstants.clientSecret;
-import static com.paypal.api.payments.util.SampleConstants.mode;
-
-import java.io.IOException;
+import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.RefundRequest;
+import com.paypal.api.payments.Sale;
+import com.paypal.api.payments.util.ResultPrinter;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-import com.paypal.api.payments.Amount;
-import com.paypal.api.payments.Refund;
-import com.paypal.api.payments.Sale;
-import com.paypal.api.payments.util.ResultPrinter;
-import com.paypal.base.rest.APIContext;
-import com.paypal.base.rest.PayPalRESTException;
+import static com.paypal.api.payments.util.SampleConstants.*;
 
 
 public class SaleRefundServlet extends HttpServlet {
@@ -46,13 +43,13 @@ public class SaleRefundServlet extends HttpServlet {
 		// Create a Sale object with the
 		// given sale transaction id.
 		Sale sale = new Sale();
-		sale.setId("03W403310B593121A");
+		sale.setId("9YB06173L6274542A");
 
 		// ###Refund
 		// A refund transaction.
 		// Use the amount to create
 		// a refund object
-		 Refund refund = new Refund();
+		 RefundRequest refund = new RefundRequest();
 		// ###Amount
 		// Create an Amount object to
 		// represent the amount to be
